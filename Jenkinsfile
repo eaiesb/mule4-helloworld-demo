@@ -10,7 +10,9 @@ disableConcurrentBuilds()
 stages {
   
 stage("buildsrc") {
-steps { buildsrc() }
+steps { buildsrc() 
+      slackSend (message: 'mule4 deployed sucessfully')
+      }
 }
 stage('renaming the target zip file') {
     steps {
