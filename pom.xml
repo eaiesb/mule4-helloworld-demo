@@ -29,8 +29,8 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.1.4</muleVersion>
-						<username>vijay_sangam</username>
-						<password>Sangam@123</password>
+						<username>srikanth_bathini</username>
+						<password>Eaiesb123</password>
 						<applicationName>HelloWorld-demo</applicationName>
 						<environment>Sandbox</environment>
 					</cloudHubDeployment>
