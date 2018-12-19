@@ -36,3 +36,4 @@ dir ('.' ) {
       success {
               emailext attachLog: true, body: 'Deployment is completed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
         }
+  }
