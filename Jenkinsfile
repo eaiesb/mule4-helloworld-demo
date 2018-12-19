@@ -29,3 +29,10 @@ dir ('.' ) {
 
 }
 }
+  post {
+      failure {
+            emailext attachLog: true, body: 'Deployment has failed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
+        }
+      success {
+              emailext attachLog: true, body: 'Deployment is completed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
+        }
