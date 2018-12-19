@@ -25,7 +25,7 @@ stage('renaming the target zip file') {
 def buildsrc() {
 dir ('.' ) {
     sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
-    emailext attachLog: true, body: 'test', subject: 'test', to: 'manoj.gundam.eaiesb.com'
+    emailext attachLog: true, body: 'test', subject: 'test', to: 'manoj.gundam@eaiesb.com'
 
 }
 }
