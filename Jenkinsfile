@@ -23,11 +23,11 @@ stage('upload to atifactory') {
   "files": [
     {
       "pattern": "**/target/*.zip",
-      "target": "generic-local"
+      "target": "generic-local/mulehelloworld"
     }
  ]
 }"""                 
-              server.publishBuildInfo server.upload(uploadSpec)
+              server.upload(uploadSpec)
              }
             }
 }  	
