@@ -22,8 +22,8 @@ stage('upload to atifactory') {
      def uploadSpec = """{
   "files": [
     {
-      "pattern": "**/*.*",
-      "target": "mule-demo"
+      "pattern": "**/*.jar",
+      "target": "generic-local/mulehelloworld"
     }
  ]
 }"""                 
