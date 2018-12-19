@@ -14,9 +14,10 @@ steps { buildsrc()
       slackSend (message: 'mule4 deployed sucessfully')
       }
 }
-stage('renaming the target zip file') {
+stage('upload to atifactory') {
     steps {
-               sh 'mv target/helloworld-1.0.0-SNAPSHOT-mule-application.jar helloworld.jar'
+               def server = Artifactory.server 'artifactory'
+               server.upload(uploadSpec)
     }
 }  	
 }
@@ -35,4 +36,12 @@ dir ('.' ) {
     sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
 }
 }
+def uploadSpec = """{
+  "files": [
+    {
+      "pattern": "**/target/*.zip",
+      "target": "generic-local"
+    }
+ ]
+}"""
 
