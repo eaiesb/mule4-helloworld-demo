@@ -17,9 +17,11 @@ steps { buildsrc()
 
 stage('upload to atifactory') {
     steps {
+             script{
                def server = Artifactory.server 'artifactory'
               server.publishBuildInfo server.upload(uploadSpec)
-    }
+             }
+            }
 }  	
 }
    post {
