@@ -14,10 +14,11 @@ steps { buildsrc()
       slackSend (message: 'mule4 deployed sucessfully')
       }
 }
-def server = Artifactory.server 'artifactory'    
+
 stage('upload to atifactory') {
     steps {
-               server.upload(uploadSpec)
+               def server = Artifactory.server 'artifactory'
+              server.publishBuildInfo server.upload(uploadSpec)
     }
 }  	
 }
