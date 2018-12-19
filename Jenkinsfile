@@ -17,7 +17,6 @@ steps { buildsrc()
 
 stage('upload to atifactory') {
     steps {
-             script{
      def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
   "files": [
@@ -28,7 +27,6 @@ stage('upload to atifactory') {
  ]
 }"""                 
               def buildInfo1 = server.upload spec: uploadSpec
-             }
             }
 }  	
 }
