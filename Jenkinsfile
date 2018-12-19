@@ -23,7 +23,7 @@ stage('upload to atifactory') {
   "files": [
     {
       "pattern": "**/*.jar",
-      "target": "generic-local/mulehelloworld"
+      "target": "generic-local/mulehelloworld.jar"
     }
  ]
 }"""                 
