@@ -19,6 +19,14 @@ stage('upload to atifactory') {
     steps {
              script{
                def server = Artifactory.server 'artifactory'
+     def uploadSpec = """{
+  "files": [
+    {
+      "pattern": "**/target/*.zip",
+      "target": "generic-local"
+    }
+ ]
+}"""                 
               server.publishBuildInfo server.upload(uploadSpec)
              }
             }
@@ -39,12 +47,5 @@ dir ('.' ) {
     sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
 }
 }
-def uploadSpec = """{
-  "files": [
-    {
-      "pattern": "**/target/*.zip",
-      "target": "generic-local"
-    }
- ]
-}"""
+
 
