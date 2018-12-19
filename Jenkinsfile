@@ -23,12 +23,11 @@ stage('upload to atifactory') {
   "files": [
     {
       "pattern": "**/target/*.zip",
-      "target": "generic-local/mulehelloworld"
+      "target": "mule-demo/mulehelloworld"
     }
  ]
 }"""                 
               def buildInfo1 = server.upload spec: uploadSpec
-              server.publishBuildInfo buildInfo1
              }
             }
 }  	
