@@ -23,7 +23,7 @@ stage('upload to atifactory') {
   "files": [
     {
       "pattern": "**/*.jar",
-      "target": "generic-local/mule4-helloworld-demo.jar"
+      "target": "generic-local/mule4-demo-jars/mule4-helloworld-demo.jar"
     }
  ]
 }"""                 
