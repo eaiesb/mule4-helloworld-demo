@@ -10,8 +10,10 @@ disableConcurrentBuilds()
 stages {
   
 stage("buildsrc") {
-steps { buildsrc() 
-      slackSend (message: 'mule4 deployed sucessfully')
+steps {
+          slackSend (message: 'mule4-helloworld deployment started')
+          buildsrc() 
+          slackSend (message: 'mule4-helloworld deployed sucessfully')
       }
 }
 
@@ -28,6 +30,7 @@ stage('upload to atifactory') {
  ]
 }"""                 
               def buildInfo1 = server.upload spec: uploadSpec
+                      slackSend (message: 'mule4-helloworld artifacts uploaded sucessfully')
             }
     }
 }  	
@@ -35,9 +38,11 @@ stage('upload to atifactory') {
    post {
       failure {
             emailext attachLog: true, body: 'Deployment has failed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
+           slackSend (message: 'mule4-helloworld deployment failed')
         }
       success {
               emailext attachLog: true, body: 'Deployment is completed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
+          slackSend (message: 'mule4-helloworld deployment is sucessful')
         }
   }
 }
