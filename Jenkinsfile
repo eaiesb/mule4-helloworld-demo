@@ -38,11 +38,11 @@ stage('upload to atifactory') {
    post {
       failure {
             emailext attachLog: true, body: 'Deployment has failed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
-           slackSend (message: 'Mule4-Helloworld Deployment Failed')
+           slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
               emailext attachLog: true, body: 'Deployment is completed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
-          slackSend (color: "#00FF00", message: 'Mule4-Helloworld Deployment is Sucessful')
+          slackSend (color: "#32CD32", message: 'Mule4-Helloworld Deployment is Sucessful')
         }
   }
 }
