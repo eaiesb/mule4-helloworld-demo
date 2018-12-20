@@ -30,7 +30,7 @@
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.1.4</muleVersion>
 						<username>sudheekar_reddy</username>
-						<password>Eaiesb123</password>
+						<password>Eaiesb@123</password>
 						<applicationName>HelloWorld-demo</applicationName>
 						<environment>Sandbox</environment>
 					</cloudHubDeployment>
