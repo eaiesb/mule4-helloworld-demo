@@ -11,9 +11,9 @@ stages {
   
 stage("buildsrc") {
 steps {
-          slackSend (message: 'mule4-helloworld deployment started')
+          slackSend (color: "0000ff", message: 'mule4-helloworld deployment started')
           buildsrc() 
-          slackSend (message: 'mule4-helloworld build sucessfully')
+          slackSend (color: "add8e6", message: 'mule4-helloworld build sucessfully')
       }
 }
 
@@ -30,7 +30,7 @@ stage('upload to atifactory') {
  ]
 }"""                 
               def buildInfo1 = server.upload spec: uploadSpec
-                      slackSend (message: 'mule4-helloworld artifacts uploaded sucessfully')
+                      slackSend (color: "#FFA500",message: 'mule4-helloworld artifacts uploaded sucessfully')
             }
     }
 }  	
@@ -42,7 +42,7 @@ stage('upload to atifactory') {
         }
       success {
               emailext attachLog: true, body: 'Deployment is completed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
-          slackSend (message: 'mule4-helloworld deployment is sucessful')
+          slackSend (color: "#7CFC00", message: 'mule4-helloworld deployment is sucessful')
         }
   }
 }
