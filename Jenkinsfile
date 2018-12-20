@@ -13,7 +13,7 @@ stage("buildsrc") {
 steps {
           slackSend (message: 'mule4-helloworld deployment started')
           buildsrc() 
-          slackSend (message: 'mule4-helloworld deployed sucessfully')
+          slackSend (message: 'mule4-helloworld build sucessfully')
       }
 }
 
