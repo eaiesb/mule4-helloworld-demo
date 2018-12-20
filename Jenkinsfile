@@ -11,9 +11,9 @@ stages {
   
 stage("buildsrc") {
 steps {
-          slackSend (color: "0000ff", message: 'mule4-helloworld deployment started')
+          slackSend (color: "add8e6", message: 'mule4-helloworld deployment started')
           buildsrc() 
-          slackSend (color: "add8e6", message: 'mule4-helloworld build sucessfully')
+          slackSend (color: "0000ff", message: 'mule4-helloworld build sucessfully')
       }
 }
 
