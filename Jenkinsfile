@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
-pipeline {
     import hudson.model.*
-    def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
+            def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
+pipeline {
     environment {
         JAVA_HOME = tool('java')
     }
