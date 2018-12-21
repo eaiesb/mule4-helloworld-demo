@@ -41,7 +41,7 @@ stage('upload to atifactory') {
            slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
-          emailext body: '''The following build details are as follows:<br> <br>
+          emailext mimeType: 'text/html' body: '''The following build details are as follows:<br> <br>
 <table border="1">
 <tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
