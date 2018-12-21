@@ -11,8 +11,7 @@ stages {
   
 stage("buildsrc") {
 steps {
-          def gu = "joe";
-          println(gu);
+
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
           buildsrc() 
           slackSend (color: "0000ff", message: 'Mule4-Helloworld Build Sucessfully')
@@ -22,6 +21,8 @@ steps {
 stage('upload to atifactory') {
     steps {
         script{
+          def gu = "joe";
+          println(gu);
      def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
   "files": [
