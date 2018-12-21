@@ -18,21 +18,10 @@ steps {
           slackSend (color: "0000ff", message: 'Mule4-Helloworld Build Sucessfully')
       }
 }
-    stage('Send Email') {
-      steps {
-        script {
-          def emailBody = "Hi ${env.GIT_URL}"
 
-          // I assume that prevBuild is defined somewhere already
-
-          notifyStatusChangeViaEmail(prevBuild, emailBody)
-        }
-      }
-    }
 stage('upload to atifactory') {
     steps {
         script{
-            def GURL = envOverrides["GIT_URL"]
           println(GURL);
      def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
@@ -73,19 +62,3 @@ dir ('.' ) {
     sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
 }
 }
-def notifyStatusChangeViaEmail(prevBuild, emailBody) {
-  if (currentBuild.previousBuild != null) {
-    switch (prevBuild.result) {
-        case 'SUCCESS':
-            emailext attachLog: true, 
-                     body: emailBody, 
-                     recipientProviders: [[$class: 'CulpritsRecipientProvider']], 
-                     subject: 'Build Status : Build is back to Normal', 
-                     to: 'manoj.gundam@eaiesb.com';
-            break
-
-      //...
-    }
-  }
-}
-
