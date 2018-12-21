@@ -11,6 +11,8 @@ stages {
   
 stage("buildsrc") {
 steps {
+          def gu = "joe";
+          println(gu);
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
           buildsrc() 
           slackSend (color: "0000ff", message: 'Mule4-Helloworld Build Sucessfully')
@@ -41,8 +43,6 @@ stage('upload to atifactory') {
            slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
-      def gu = "joe";
-          println(gu);
           emailext attachLog: true, mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
 <table border="1">
 <tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
