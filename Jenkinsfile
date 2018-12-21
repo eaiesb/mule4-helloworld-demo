@@ -1,6 +1,8 @@
 #!/usr/bin/groovy
 pipeline {
     environment {
+    import hudson.model.*
+    def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
         JAVA_HOME = tool('java')
     }
 agent any
@@ -41,9 +43,6 @@ stage('upload to atifactory') {
            slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
-              import hudson.model.*
-
-    def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
       echo "${env.GIT_URL}"
           emailext attachLog: true, mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
 <table border="1">
