@@ -42,11 +42,11 @@ stage('upload to atifactory') {
         }
       success {
            echo "My branch is: ${env.GIT_URL}"
-          emailext mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
+          emailext attachLog: true, mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
 <table border="1">
 <tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
-<tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>$env.GIT_URL</td></tr>
+<tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>${ENV, var="GIT_URL"}</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>git commiter name</b></td><td>${env.GIT_COMMITTER_NAME}</td></tr>
 </table>
 ''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME}', to: 'devops@eaiesb.com'    
