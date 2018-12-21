@@ -41,12 +41,15 @@ stage('upload to atifactory') {
            slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
+              import hudson.model.*
+
+    def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
       echo "${env.GIT_URL}"
           emailext attachLog: true, mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
 <table border="1">
 <tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
-<tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>${ENV, var="env.GIT_URL"}</td></tr>
+<tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>${ENV, var="MY_GIT_URL"}</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>git commiter name</b></td><td>${ENV, var="GIT_COMMITTER_NAME"}</td></tr>
 </table>
 ''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME}', to: 'devops@eaiesb.com'    
