@@ -15,9 +15,9 @@ steps {
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
           buildsrc() 
           slackSend (color: "0000ff", message: 'Mule4-Helloworld Build Sucessfully')
-          slackSend (color: "0000ff", message: "Git URL is : ${env.GIT_URL}
-                 GIT_COMMITTER_NAME is : ${env.GIT_COMMITTER_NAME}
-                 GIT_COMMIT is : ${env.GIT_COMMIT}")
+          slackSend (color: "0000ff", message: "Git URL is : ${env.GIT_URL}")
+          slackSend (color: "0000ff", message: "GIT_COMMITTER_NAME is : ${env.GIT_COMMITTER_NAME}")
+          slackSend (color: "0000ff", message: "GIT_COMMIT is : ${env.GIT_COMMIT}")
       }
 }
 
