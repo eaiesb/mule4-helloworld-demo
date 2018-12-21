@@ -1,6 +1,4 @@
 #!/usr/bin/groovy
-    import hudson.model.*
-            def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
 pipeline {
     environment {
         JAVA_HOME = tool('java')
@@ -46,6 +44,10 @@ stage('upload to atifactory') {
       echo "${env.GIT_URL}"
           emailext attachLog: true, mimeType: 'text/html', body: '''The following build details are as follows:<br> <br>
 <table border="1">
+    <%
+def envOverrides = it.getAction("org.jenkinsci.plugins.workflow.cps.EnvActionImpl").getOverriddenEnvironment()
+    MY_GIT_URL =  envOverrides["GIT_URL"]
+%>
 <tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>${ENV, var="MY_GIT_URL"}</td></tr>
