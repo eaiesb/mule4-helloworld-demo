@@ -1,8 +1,8 @@
 #!/usr/bin/groovy
 pipeline {
-    environment {
     import hudson.model.*
     def MY_GIT_URL= build.getEnvVars()["GIT_URL"];
+    environment {
         JAVA_HOME = tool('java')
     }
 agent any
