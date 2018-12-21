@@ -50,7 +50,7 @@ stage('upload to atifactory') {
 <tr><td style="background-color:#33339F;color:white"><b>git url</b></td><td>${ENV, var="GURL"}</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>git commiter name</b></td><td>$ENV</td></tr>
 </table>
-''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME} ${GIT_URL}', to: 'devops@eaiesb.com'    
+''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME} ${env.GIT_URL}', to: 'devops@eaiesb.com'    
           slackSend (color: "#32CD32", message: 'Mule4-Helloworld Deployment is Sucessful')
         }
   }
