@@ -22,7 +22,6 @@ steps {
 stage('upload to atifactory') {
     steps {
         script{
-          println(GURL);
      def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
   "files": [
