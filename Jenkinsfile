@@ -25,7 +25,8 @@ steps {
 stage('upload to atifactory') {
     steps {
         script{
-        echo ${env.GIT_URL} > /tmp/giturl.txt
+        touch /tmp/giturl.txt
+        echo "${env.GIT_URL}" > /tmp/giturl.txt
      def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
   "files": [
