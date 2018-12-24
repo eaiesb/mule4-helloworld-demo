@@ -13,8 +13,6 @@ stages {
 stage("buildsrc") {
 steps {
           slackSend (color: "#f1502f", message: "Git URL is : ${env.GIT_URL}")
-          slackSend (color: "#3e2c00", message: "GIT_COMMITTER_NAME is : ${env.GIT_COMMITTER_NAME}")
-          slackSend (color: "#3e2c00", message: "GIT_COMMIT is : ${env.GIT_COMMIT}")
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
           buildsrc() 
           slackSend (color: "0000ff", message: 'Mule4-Helloworld Build Sucessfully')
@@ -26,7 +24,7 @@ stage('upload to atifactory') {
     steps {
         script{
         sh "echo ${env.GIT_URL} > /tmp/giturl.txt"
-     def server = Artifactory.server 'artifactor'
+     def server = Artifactory.server 'artifactory'
      def uploadSpec = """{
   "files": [
     {
@@ -45,7 +43,7 @@ stage('upload to atifactory') {
       failure {
             emailext attachLog: true, body: '''The Failed build details are as follows:<br> <br>
 <table border="1">
-<tr><td style="background-color:white;color:red">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
+<tr><td style="background-color:white;color:red"><b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:white;color:red"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
 <tr><td style="background-color:white;color:red"><b>GIT URL</b></td><td>${FILE, path="/tmp/giturl.txt"}</td></tr>
 <tr><td style="background-color:white;color:red"><b>Build URL</b></td><td>$BUILD_URL</td></tr>
@@ -56,7 +54,7 @@ stage('upload to atifactory') {
       success {
           emailext attachLog: true, mimeType: 'text/html', body: '''The jenkins build details are as follows:<br> <br>
 <table border="1">
-<tr><td style="background-color:#33339F;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
+<tr><td style="background-color:#33339F;color:white"><b>Job Name</b></td><td>$JOB_NAME</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>GIT URL</b></td><td>${FILE, path="/tmp/giturl.txt"}</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build URL</b></td><td>$BUILD_URL</td></tr>
