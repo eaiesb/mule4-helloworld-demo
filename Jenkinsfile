@@ -9,7 +9,7 @@ disableConcurrentBuilds()
 }
 stages {
   
-stage("buildsrc") {
+stage("Build Mule Source Code") {
 steps {
           slackSend (color: "#f1502f", message: "Git URL is : ${env.GIT_URL}")
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
@@ -17,7 +17,7 @@ steps {
       }
 }
 
-stage('upload to atifactory') {
+stage('Upload Files To Artifactory') {
     steps {
         script{
         sh "echo ${env.GIT_URL}"
