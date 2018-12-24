@@ -15,8 +15,6 @@ steps {
           slackSend (color: "#f1502f", message: "Git URL is : ${env.GIT_URL}")
           slackSend (color: "add8e6", message: 'Mule4-Helloworld Deployment Started')
           buildsrc() 
-          slackSend (color: "0000ff", message: 'Mule4-Helloworld Build failed')
-
       }
 }
 
@@ -41,6 +39,7 @@ stage('upload to atifactory') {
 }
    post {
       failure {
+                slackSend (color: "0000ff", message: 'Mule4-Helloworld Build failed')
             emailext attachLog: true, body: '''The Failed build details are as follows:<br> <br>
 <table border="1">
 <tr><td style="background-color:white;color:red"><b>Job Name</b></td><td>$JOB_NAME</td></tr>
@@ -52,6 +51,7 @@ stage('upload to atifactory') {
            slackSend (color: "#FF0001",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
+          slackSend (color: "0000ff", message: 'Mule4-Helloworld Build sucess')
           slackSend (color: "#FFA500",message: 'Mule4-Helloworld Artifacts Uploaded Sucessfully')
           emailext attachLog: true, mimeType: 'text/html', body: '''The jenkins build details are as follows:<br> <br>
 <table border="1">
