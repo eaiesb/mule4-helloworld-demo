@@ -45,10 +45,10 @@ stage('upload to atifactory') {
       failure {
             emailext attachLog: true, body: '''The Failed build details are as follows:<br> <br>
 <table border="1">
-<tr><td style="background-color:#FF0000;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
-<tr><td style="background-color:#FF0000;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
-<tr><td style="background-color:#FF0000;color:white"><b>GIT URL</b></td><td>${FILE, path="/tmp/giturl.txt"}</td></tr>
-<tr><td style="background-color:#FF0000;color:white"><b>Build URL</b></td><td>$BUILD_URL</td></tr>
+<tr><td style="background-color:#8B0000;color:white">,<b>Job Name</b></td><td>$JOB_NAME</td></tr>
+<tr><td style="background-color:#8B0000;color:white"><b>Build Number</b></td><td>$BUILD_NUMBER</td></tr>
+<tr><td style="background-color:#8B0000;color:white"><b>GIT URL</b></td><td>${FILE, path="/tmp/giturl.txt"}</td></tr>
+<tr><td style="background-color:#8B0000;color:white"><b>Build URL</b></td><td>$BUILD_URL</td></tr>
 </table>
 ''', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
            slackSend (color: "#FF0001",message: 'Mule4-Helloworld Deployment Failed')
