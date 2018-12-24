@@ -2,7 +2,6 @@
 pipeline {
     environment {
         JAVA_HOME = tool('java')
-        GU = "${env.GIT_URL}"
     }
 agent any
 options {
