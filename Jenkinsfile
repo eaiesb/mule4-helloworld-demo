@@ -42,7 +42,7 @@ stage('upload to atifactory') {
 }
    post {
       failure {
-            emailext attachLog: true, body: 'Deployment has failed', subject: 'Mule 4 Cloud Deployment Status', to: 'ravi.kumar@eaiesb.com'
+            emailext attachLog: true, body: 'Deployment has failed', subject: 'Mule 4 Cloud Deployment Status', to: 'devops@eaiesb.com'
            slackSend (color: "#FF0000",message: 'Mule4-Helloworld Deployment Failed')
         }
       success {
@@ -53,7 +53,7 @@ stage('upload to atifactory') {
 <tr><td style="background-color:#33339F;color:white"><b>Executor Number</b></td><td>$EXECUTOR_NUMBER</td></tr>
 <tr><td style="background-color:#33339F;color:white"><b>Build URL</b></td><td>$BUILD_URL</td></tr>
 </table>
-''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME} ${ENV, var="GIT_URL"}', to: 'ravi.kumar@eaiesb.com'    
+''', subject: 'Jenkins ${BUILD_STATUS} [#${BUILD_NUMBER}] - ${PROJECT_NAME} ${ENV, var="GIT_URL"}', to: 'devops@eaiesb.com'    
           slackSend (color: "#32CD32", message: 'Mule4-Helloworld Deployment is Sucessful')
         }
   }
@@ -61,6 +61,6 @@ stage('upload to atifactory') {
 // steps
 def buildsrc() {
 dir ('.' ) {
-    sh '/app/ciplatform/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
+    sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
 }
 }
