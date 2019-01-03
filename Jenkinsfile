@@ -61,6 +61,6 @@ stage('upload to atifactory') {
 // steps
 def buildsrc() {
 dir ('.' ) {
-    sh '/usr/maven/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
+    sh '/app/ciplatform/apache-maven-3.3.9/bin/mvn clean package deploy -DmuleDeploy'
 }
 }
